@@ -20,7 +20,7 @@ public class HealthManager : MonoBehaviour {
 	void Update () {
         if (isInvincible)
         {
-            //spriteRenderer.enabled = toggleEnableSprite;
+            spriteRenderer.enabled = toggleEnableSprite;
             toggleEnableSprite = !toggleEnableSprite;
         }
     }
