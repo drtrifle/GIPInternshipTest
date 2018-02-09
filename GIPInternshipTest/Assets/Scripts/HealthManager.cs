@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour {
 
-    public int remainingHealth;
+    public int initialHealth;
+    private int remainingHealth;
 
     public bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
@@ -12,8 +13,8 @@ public class HealthManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        remainingHealth = initialHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
-
     }
 	
 	// Update is called once per frame

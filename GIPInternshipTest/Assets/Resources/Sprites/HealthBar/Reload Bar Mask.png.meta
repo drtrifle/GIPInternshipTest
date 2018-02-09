@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8e3c1dcfbcbf5c34d90008c0397f2461
-timeCreated: 1518077656
+guid: f8b3e0e6f48b6db4ea132d9155d8c640
+timeCreated: 1518144952
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bowling_Alley_sprite_Cleaned_0
+    21300000: Reload Bar Mask_0
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -41,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -101,13 +101,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bowling_Alley_sprite_Cleaned_0
+      name: Reload Bar Mask_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2000
-        height: 1385
+        x: 25
+        y: 32
+        width: 77
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

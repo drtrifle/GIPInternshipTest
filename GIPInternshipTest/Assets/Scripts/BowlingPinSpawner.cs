@@ -14,11 +14,23 @@ public class BowlingPinSpawner : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        SpawnBowlingPinOnInput();
+    }
+
+    //Raycast from cursor to background and only allow spawn if it hits the polygon collider 
+    void SpawnBowlingPinOnInput()
+    {
+        if (Input.GetButtonDown("Fire1"))
         {
             Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             cursorPosition.z = 0;
-            Instantiate(bowlingPinPrefab, cursorPosition, Quaternion.identity);
+
+            if (hit.collider != null)
+            {
+                cursorPosition.z = 0;
+                Instantiate(bowlingPinPrefab, cursorPosition, Quaternion.identity);
+            }
         }
     }
 }
