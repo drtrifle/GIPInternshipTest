@@ -9,11 +9,8 @@ public class UIManager : MonoBehaviour {
 
     public Vector3 healthUIOffset;
 
-    public Transform test;
-
 	// Use this for initialization
 	void Start () {
-        CreateHealthUI(test);
     }
 	
 	// Update is called once per frame
@@ -21,10 +18,12 @@ public class UIManager : MonoBehaviour {
 		
 	}
 
-    void CreateHealthUI(Transform targetTransform)
+    public HealthBar CreateHealthUI(Transform targetTransform)
     {
-        GameObject healthBar = Instantiate(healthUIPrefab) as GameObject;
-        healthBar.GetComponent<HealthBar>().SetHealthBarData(targetTransform, mainCanvas);
+        GameObject clone = Instantiate(healthUIPrefab) as GameObject;
+        HealthBar healthBar = clone.GetComponent<HealthBar>();
+        healthBar.SetHealthBarData(targetTransform, mainCanvas);
         healthBar.transform.SetParent(mainCanvas, false);
+        return healthBar;
     }
 }

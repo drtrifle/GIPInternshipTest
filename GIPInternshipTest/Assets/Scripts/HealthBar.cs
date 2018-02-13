@@ -6,12 +6,13 @@ public class HealthBar : MonoBehaviour
 
     #region PRIVATE_VARIABLES
     private Vector2 positionCorrection = new Vector2(0, 50);
+    private Image healthBarImage;
     #endregion
 
     #region PUBLIC_REFERENCES
     public RectTransform targetCanvas;
-    public RectTransform healthBar;
-    public Transform objectToFollow;
+    public RectTransform healthBarMask;
+    public Transform objectToFollow; 
 
     #endregion
 
@@ -19,19 +20,30 @@ public class HealthBar : MonoBehaviour
     public void SetHealthBarData(Transform targetTransform, RectTransform healthBarPanel)
     {
         this.targetCanvas = healthBarPanel;
-        healthBar = GetComponent<RectTransform>();
+        healthBarMask = GetComponent<RectTransform>();
+        healthBarImage = healthBarMask.GetChild(0).GetComponent<Image>();
         objectToFollow = targetTransform;
         RepositionHealthBar();
-        healthBar.gameObject.SetActive(true);
+        healthBarMask.gameObject.SetActive(true);
     }
 
     public void OnHealthChanged(float healthFill)
     {
-        healthBar.GetComponent<Image>().fillAmount = healthFill;
+        healthBarImage.fillAmount = healthFill;
+    }
+
+    public void TearDownHealthBar()
+    {
+        Destroy(gameObject);
     }
     #endregion
 
     #region UNITY_CALLBACKS
+    private void Start()
+    {
+        healthBarMask.GetComponent<Image>().fillAmount = 1f;
+    }
+
     void Update()
     {
         RepositionHealthBar();
@@ -48,7 +60,7 @@ public class HealthBar : MonoBehaviour
         ((ViewportPosition.y * targetCanvas.sizeDelta.y) - (targetCanvas.sizeDelta.y * 0.5f)));
 
         //now you can set the position of the ui element
-        healthBar.anchoredPosition = WorldObject_ScreenPosition + positionCorrection;
+        healthBarMask.anchoredPosition = WorldObject_ScreenPosition + positionCorrection;
     }
     #endregion
 }
