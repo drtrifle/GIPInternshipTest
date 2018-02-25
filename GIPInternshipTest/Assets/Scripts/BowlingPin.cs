@@ -18,7 +18,6 @@ public class BowlingPin : MonoBehaviour {
     void Update () {
         UpdateSpriteRenderer();
         UpdateLocalScale();
-        ShootEnemy();
     }
 
     //Order sprites that are closer to the bottom to be rendered last 
@@ -36,8 +35,18 @@ public class BowlingPin : MonoBehaviour {
 
     //Incompltete
     //Need to roatae bullet to face enemy
-    void ShootEnemy()
+    void ShootEnemy(Quaternion rotation)
     {
-        objectPooler.SpawnFromPool("TowerBullet", transform.position, transform.rotation);
+        objectPooler.SpawnFromPool("TowerBullet", transform.position, rotation);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("BowlingBall"))
+        {
+            Vector3 relativePos = other.transform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos);
+            ShootEnemy(rotation);
+        }
     }
 }

@@ -68,6 +68,18 @@ public class BowlingBall : MonoBehaviour {
         }
     }
 
+    void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("BowlingPin"))
+        {
+            if (other.transform.position.y >= transform.position.y)
+            {
+                other.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
+                isPathBlocked = true;
+            }
+        }
+    }
+
     void OnTriggerExit2D(Collider2D other)
     {
         isPathBlocked = false;
