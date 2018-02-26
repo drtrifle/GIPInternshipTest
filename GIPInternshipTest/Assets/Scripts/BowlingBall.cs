@@ -56,18 +56,6 @@ public class BowlingBall : MonoBehaviour {
         spriteRenderer.sortingOrder = -(int)(transform.position.y * 100f);
     }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.CompareTag("BowlingPin"))
-        {
-            if(other.transform.position.y >= transform.position.y)
-            {
-                other.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
-                isPathBlocked = true;
-            }
-        }
-    }
-
     void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("BowlingPin"))
@@ -77,6 +65,14 @@ public class BowlingBall : MonoBehaviour {
                 other.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
                 isPathBlocked = true;
             }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("TowerBullet"))
+        {
+            other.gameObject.GetComponent<Projectile>().DeactivateNow();
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
-    private float speed = 1f;
+    private float speed = 10f;
     Rigidbody2D projectileRigidbody;
     private float timeBeforeDeactivate = 3f;
 
@@ -16,7 +16,12 @@ public class Projectile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        projectileRigidbody.velocity = transform.right * speed;
+        projectileRigidbody.velocity = transform.up * speed;
+    }
+
+    public void DeactivateNow()
+    {
+        gameObject.SetActive(false);
     }
 
     private IEnumerator DeactivateAfterTime()
