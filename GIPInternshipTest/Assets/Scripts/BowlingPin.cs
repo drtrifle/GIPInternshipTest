@@ -90,6 +90,10 @@ public class BowlingPin : MonoBehaviour {
         {
             yield return new WaitForSeconds(shootingInterval);
 
+            //Break early if target was destroyed
+            if (target == null)
+                yield break;
+
             //calculates the angle the bullet prefab must be rotated to face the enemy
             float XDif = target.transform.position.x - transform.position.x;
             float YDif = target.transform.position.y - transform.position.y;

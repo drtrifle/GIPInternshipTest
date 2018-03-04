@@ -15,7 +15,7 @@ public class HealthManager : MonoBehaviour {
     private UIManager uIManager;
     private HealthBar healthBar;
 
-
+    #region Unity Methods
     private void Awake()
     {
         uIManager = GameObject.Find("UIManager").GetComponent<UIManager>();
@@ -37,6 +37,7 @@ public class HealthManager : MonoBehaviour {
             toggleEnableSprite = !toggleEnableSprite;
         }
     }
+    #endregion
 
     public void TakeDamage(int damage)
     {
@@ -62,14 +63,6 @@ public class HealthManager : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    private IEnumerator StartInvincibleSequence()
-    {
-        isInvincible = true;
-        yield return new WaitForSecondsRealtime(.5f);
-        spriteRenderer.enabled = true;
-        isInvincible = false;
-    }
-
     #region Health_UI_METHODS
     void SetUpHealthBar()
     {
@@ -82,4 +75,13 @@ public class HealthManager : MonoBehaviour {
     }
     #endregion
 
+    #region Coroutines
+    private IEnumerator StartInvincibleSequence()
+    {
+        isInvincible = true;
+        yield return new WaitForSecondsRealtime(.5f);
+        spriteRenderer.enabled = true;
+        isInvincible = false;
+    }
+    #endregion
 }

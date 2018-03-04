@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(HealthManager))]
 public class BowlingBall : MonoBehaviour {
 
     public Transform goalTransform;
@@ -12,12 +14,14 @@ public class BowlingBall : MonoBehaviour {
 
     private Rigidbody2D rb2D;
     private bool isPathBlocked = false;
+    private HealthManager healthManager;
 
     public int damage = 1;
 
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        healthManager = GetComponent<HealthManager>();
         UpdateLocalScale();
         UpdateSpriteRenderer();
     }
@@ -72,6 +76,7 @@ public class BowlingBall : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("TowerBullet"))
         {
+            healthManager.TakeDamage(1);
             other.gameObject.GetComponent<Projectile>().DeactivateNow();
         }
     }

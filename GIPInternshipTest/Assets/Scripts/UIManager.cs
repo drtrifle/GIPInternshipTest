@@ -9,15 +9,6 @@ public class UIManager : MonoBehaviour {
 
     public Vector3 healthUIOffset;
 
-	// Use this for initialization
-	void Start () {
-    }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
     public HealthBar CreateHealthUI(Transform targetTransform)
     {
         GameObject clone = Instantiate(healthUIPrefab) as GameObject;
