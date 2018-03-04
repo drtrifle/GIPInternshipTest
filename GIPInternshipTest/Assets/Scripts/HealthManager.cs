@@ -5,6 +5,7 @@ using UnityEngine;
 public class HealthManager : MonoBehaviour {
 
     public int initialHealth;
+    [SerializeField]
     private int remainingHealth;
 
     public bool isInvincible = false;

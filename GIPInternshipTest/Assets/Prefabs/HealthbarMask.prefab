@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCanvas: {fileID: 0}
-  healthBar: {fileID: 0}
+  healthBarMask: {fileID: 0}
   objectToFollow: {fileID: 0}
 --- !u!114 &114270536024833036
 MonoBehaviour:
@@ -155,7 +155,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 60, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224728771253482284
 RectTransform:
