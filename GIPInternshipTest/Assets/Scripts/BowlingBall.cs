@@ -6,7 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(HealthManager))]
 public class BowlingBall : MonoBehaviour {
 
-    public Transform goalTransform;
+    private GameObject[] goalObjects;
+    [SerializeField]
+    private Transform goalTransform;
     private SpriteRenderer spriteRenderer;
 
     public Vector2 velocity;
@@ -22,6 +24,7 @@ public class BowlingBall : MonoBehaviour {
     {
         rb2D = GetComponent<Rigidbody2D>();
         healthManager = GetComponent<HealthManager>();
+        GetDestinationTarget();
         UpdateLocalScale();
         UpdateSpriteRenderer();
     }
@@ -34,6 +37,13 @@ public class BowlingBall : MonoBehaviour {
         isPathBlocked = false;
     }
 
+    void GetDestinationTarget()
+    {
+        goalObjects = GameObject.FindGameObjectsWithTag("Goal");
+        int rdmIndex = Random.Range(0,goalObjects.Length);
+        goalTransform = goalObjects[rdmIndex].transform;
+    }
+
     void UpdateLocalScale()
     {
         float yPosition = transform.position.y / 10;
@@ -44,6 +54,7 @@ public class BowlingBall : MonoBehaviour {
     {
         if (isPathBlocked)
         {
+            velocity = Vector2.zero;
             return;
         }
 
