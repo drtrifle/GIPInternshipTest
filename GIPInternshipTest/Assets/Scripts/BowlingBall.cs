@@ -41,6 +41,15 @@ public class BowlingBall : MonoBehaviour {
         isPathBlocked = false;
     }
 
+    //Called when Ball has reached goal
+    public void ReachedDestination()
+    {
+        //TODO: Damage player
+
+        //Destroy Ball Object& Healthbar UI 
+        healthManager.Die();
+    }
+
     void GetDestinationTarget()
     {
         goalObjects = GameObject.FindGameObjectsWithTag("Goal");

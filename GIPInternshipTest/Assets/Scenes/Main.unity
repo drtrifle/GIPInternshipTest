@@ -246,6 +246,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 253176654}
+  - component: {fileID: 253176655}
+  - component: {fileID: 253176657}
   m_Layer: 0
   m_Name: BowlingBallGoal
   m_TagString: Goal
@@ -266,6 +268,32 @@ Transform:
   m_Father: {fileID: 679477655}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &253176655
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 253176653}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &253176657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 253176653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a98920ee00cfe9d45b183a200a489d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &279302720
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +433,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 973737442}
+  - component: {fileID: 973737443}
+  - component: {fileID: 973737445}
   m_Layer: 0
   m_Name: BowlingBallGoal (2)
   m_TagString: Goal
@@ -425,6 +455,32 @@ Transform:
   m_Father: {fileID: 679477655}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &973737443
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 973737441}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &973737445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 973737441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a98920ee00cfe9d45b183a200a489d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1616433544
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,6 +489,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1616433545}
+  - component: {fileID: 1616433546}
+  - component: {fileID: 1616433548}
   m_Layer: 0
   m_Name: BowlingBallGoal (3)
   m_TagString: Goal
@@ -453,6 +511,32 @@ Transform:
   m_Father: {fileID: 679477655}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1616433546
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1616433544}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &1616433548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1616433544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a98920ee00cfe9d45b183a200a489d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1711697847
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,6 +545,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1711697848}
+  - component: {fileID: 1711697849}
+  - component: {fileID: 1711697851}
   m_Layer: 0
   m_Name: BowlingBallGoal (1)
   m_TagString: Goal
@@ -481,6 +567,32 @@ Transform:
   m_Father: {fileID: 679477655}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1711697849
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1711697847}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &1711697851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1711697847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a98920ee00cfe9d45b183a200a489d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1735711456
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +780,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2056866124}
+  - component: {fileID: 2056866125}
+  - component: {fileID: 2056866127}
   m_Layer: 0
   m_Name: BowlingBallGoal (4)
   m_TagString: Goal
@@ -688,6 +802,32 @@ Transform:
   m_Father: {fileID: 679477655}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &2056866125
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2056866123}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &2056866127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2056866123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a98920ee00cfe9d45b183a200a489d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2139902956
 GameObject:
   m_ObjectHideFlags: 0

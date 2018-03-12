@@ -58,7 +58,7 @@ public class HealthManager : MonoBehaviour {
         StartCoroutine("StartInvincibleSequence");
     }
 
-    void Die()
+    public void Die()
     {
         healthBar.TearDownHealthBar();
         Destroy(gameObject);
