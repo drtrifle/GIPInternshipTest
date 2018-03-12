@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class BowlingBallSpawner : MonoBehaviour
 {
+    [SerializeField]
+    private float spawnInterval = 10;
 
-    public GameObject bowlingBallPrefab;
+    public GameObject[] bowlingBallPrefabs;
 
     // Use this for initialization
     void Start()
     {
-
+        StartCoroutine(SpawnEnemy());
     }
 
     // Update is called once per frame
@@ -31,8 +33,22 @@ public class BowlingBallSpawner : MonoBehaviour
             if (hit.collider != null)
             {
                 cursorPosition.z = 0;
-                Instantiate(bowlingBallPrefab, cursorPosition, Quaternion.identity);
+                int rdmIndex = Random.Range(0, bowlingBallPrefabs.Length);
+                Instantiate(bowlingBallPrefabs[rdmIndex], cursorPosition, Quaternion.identity);
             }
         }
     }
+
+    #region Coroutines
+    private IEnumerator SpawnEnemy()
+    {
+        while (!GameManager.isGameOver)
+        {
+            Vector3 rdmVector = new Vector3(Random.Range(-11f, 11f), -10f, 0f);
+            int rdmIndex = Random.Range(0, bowlingBallPrefabs.Length);
+            Instantiate(bowlingBallPrefabs[rdmIndex], rdmVector, Quaternion.identity);
+            yield return new WaitForSeconds(spawnInterval);
+        }
+    }
+    #endregion
 }

@@ -157,7 +157,6 @@ MonoBehaviour:
   healthUIPrefab: {fileID: 1655122362289824, guid: c8fd078b48c4a7c458be403d31ad5776,
     type: 2}
   healthUIOffset: {x: 0, y: 0, z: 0}
-  playerRemainingHealth: 50
   playerHealthText: {fileID: 1298915013}
 --- !u!1 &182955187
 GameObject:
@@ -351,8 +350,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799d2e2fca857a442870a29c1c1f2ff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bowlingBallPrefab: {fileID: 1805298431118890, guid: 58e7054e1582735478a9da5f554ffac4,
-    type: 2}
+  spawnInterval: 5
+  bowlingBallPrefabs:
+  - {fileID: 1185694208305894, guid: ea5bb85768d871c4db3123e48254311b, type: 2}
+  - {fileID: 1805298431118890, guid: 58e7054e1582735478a9da5f554ffac4, type: 2}
 --- !u!114 &279302724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd64cbd4ca54af4bbe5a8c9910376bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRemainingHealth: 50
 --- !u!1 &679477654
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,6 +571,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1298915011}
+--- !u!1 &1427625516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1427625517}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1427625517
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1427625516}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.12, y: -9.01, z: 0.31278792}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1616433544
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private int playerRemainingHealth = 50;
 
+    public static bool isGameOver = false;
+
     #region Singleton
     public static GameManager Instance;
 
