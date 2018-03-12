@@ -67,7 +67,7 @@ public class HealthManager : MonoBehaviour {
     #region Health_UI_METHODS
     void SetUpHealthBar()
     {
-        healthBar = uIManager.CreateHealthUI(transform);
+        healthBar = uIManager.CreateHealthBarUI(transform);
     }
 
     void UpdateHealthUI()

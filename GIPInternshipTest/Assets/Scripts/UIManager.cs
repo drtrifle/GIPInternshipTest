@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class UIManager : MonoBehaviour {
 
@@ -8,8 +10,30 @@ public class UIManager : MonoBehaviour {
     public GameObject healthUIPrefab;
 
     public Vector3 healthUIOffset;
+    public Text playerHealthText;
 
-    public HealthBar CreateHealthUI(Transform targetTransform)
+    #region Singleton
+    public static UIManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
+
+    public void UpdatePlayerHealth(int playerRemainingHealth)
+    {
+        playerHealthText.text = "Health: " + playerRemainingHealth;
+    }
+
+    public HealthBar CreateHealthBarUI(Transform targetTransform)
     {
         GameObject clone = Instantiate(healthUIPrefab) as GameObject;
         HealthBar healthBar = clone.GetComponent<HealthBar>();
