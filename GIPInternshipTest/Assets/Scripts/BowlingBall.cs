@@ -7,18 +7,22 @@ using UnityEngine;
 public class BowlingBall : MonoBehaviour {
 
     private GameObject[] goalObjects;
+    private bool isPathBlocked = false;
+    public float scaleMutiplier = 1;
+
     [SerializeField]
     private Transform goalTransform;
-    private SpriteRenderer spriteRenderer;
 
     public Vector2 velocity;
-    public float speed = 1;
+    [SerializeField]
+    private float speed = 1;
+    [SerializeField]
+    private int damage = 1;
 
+    //Component Variables
     private Rigidbody2D rb2D;
-    private bool isPathBlocked = false;
+    private SpriteRenderer spriteRenderer;
     private HealthManager healthManager;
-
-    public int damage = 1;
 
     void Start()
     {
@@ -47,7 +51,7 @@ public class BowlingBall : MonoBehaviour {
     void UpdateLocalScale()
     {
         float yPosition = transform.position.y / 10;
-        transform.localScale = new Vector3(1 - yPosition, 1 - yPosition, 1);
+        transform.localScale = new Vector3((1 - yPosition) * scaleMutiplier, (1 - yPosition) * scaleMutiplier, 1);
     }
 
     void UpdatePosition()
