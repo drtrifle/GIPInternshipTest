@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -30,5 +31,23 @@ public class GameManager : MonoBehaviour {
     {
         playerRemainingHealth -= damage;
         UIManager.Instance.UpdatePlayerHealth(playerRemainingHealth);
+
+        if (playerRemainingHealth <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    private void GameOver()
+    {
+        isGameOver = true;
+        Time.timeScale = 0f;
+    }
+
+    //Called by Restart Button
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

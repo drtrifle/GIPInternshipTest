@@ -20,7 +20,7 @@ public class BowlingPinSpawner : MonoBehaviour {
     //Raycast from cursor to background and only allow spawn if it hits the polygon collider 
     void SpawnBowlingPinOnInput()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !GameManager.isGameOver)
         {
             Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
