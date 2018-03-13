@@ -33,7 +33,7 @@ public class BowlingBall : MonoBehaviour {
         UpdateSpriteRenderer();
     }
 
-    void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         UpdatePosition();
         UpdateLocalScale();
@@ -50,7 +50,7 @@ public class BowlingBall : MonoBehaviour {
         healthManager.Die();
     }
 
-    void GetDestinationTarget()
+    protected void GetDestinationTarget()
     {
         goalObjects = GameObject.FindGameObjectsWithTag("Goal");
         int rdmIndex = Random.Range(0,goalObjects.Length);
