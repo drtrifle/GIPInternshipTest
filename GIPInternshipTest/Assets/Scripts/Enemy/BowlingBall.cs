@@ -44,7 +44,7 @@ public class BowlingBall : MonoBehaviour {
     //Called when Ball has reached goal
     public void ReachedDestination()
     {
-        //TODO: Damage player
+        //Damage player
         GameManager.Instance.DamagePlayer(damage);
         //Destroy Ball Object& Healthbar UI 
         healthManager.Die();

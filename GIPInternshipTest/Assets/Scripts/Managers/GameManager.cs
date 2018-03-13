@@ -38,16 +38,18 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void GameOver()
-    {
-        isGameOver = true;
-        Time.timeScale = 0f;
-    }
-
+    #region Game State Methods
     //Called by Restart Button
     public void RestartGame()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    void GameOver()
+    {
+        isGameOver = true;
+        Time.timeScale = 0f;
+    }
+    #endregion
 }
