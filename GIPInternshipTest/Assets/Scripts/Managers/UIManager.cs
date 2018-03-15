@@ -31,6 +31,11 @@ public class UIManager : MonoBehaviour {
 
     public void UpdatePlayerHealth(int playerRemainingHealth)
     {
+        if(playerRemainingHealth < 0)
+        {
+            playerRemainingHealth = 0;
+        }
+
         playerHealthText.text = "Health: " + playerRemainingHealth;
     }
 
