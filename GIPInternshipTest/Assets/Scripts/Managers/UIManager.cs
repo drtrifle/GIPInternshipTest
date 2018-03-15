@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour {
 
     public Vector3 healthUIOffset;
     public Text playerHealthText;
+    public GameObject gameOverUI;
 
     #region Singleton
     public static UIManager Instance;
@@ -40,5 +41,10 @@ public class UIManager : MonoBehaviour {
         healthBar.SetHealthBarData(targetTransform, mainCanvas);
         healthBar.transform.SetParent(mainCanvas, false);
         return healthBar;
+    }
+
+    public void DisplayGameOverUI()
+    {
+        gameOverUI.SetActive(true);
     }
 }

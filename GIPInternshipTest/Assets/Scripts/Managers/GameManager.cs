@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour {
     public void RestartGame()
     {
         Time.timeScale = 1f;
+        isGameOver = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour {
     {
         isGameOver = true;
         Time.timeScale = 0f;
+        UIManager.Instance.DisplayGameOverUI();
     }
     #endregion
 }
