@@ -7,6 +7,7 @@ using UnityEngine;
 public class BowlingBall : MonoBehaviour {
 
     private GameObject[] goalObjects;
+    [SerializeField]
     private bool isPathBlocked = false;
     public float scaleMutiplier = 1;
 
@@ -38,7 +39,7 @@ public class BowlingBall : MonoBehaviour {
         UpdatePosition();
         UpdateLocalScale();
         UpdateSpriteRenderer();
-        isPathBlocked = false;
+        //isPathBlocked = false;
     }
 
     //Called when Ball has reached goal
@@ -84,24 +85,37 @@ public class BowlingBall : MonoBehaviour {
         spriteRenderer.sortingOrder = -(int)(transform.position.y * 100f);
     }
 
-    void OnCollisionStay2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("BowlingPin"))
         {
             if (other.transform.position.y >= transform.position.y)
             {
-                other.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
+                Debug.Log("OnTriggerEnter2D");
+
+                velocity = Vector2.zero;
                 isPathBlocked = true;
+                other.gameObject.GetComponentInParent<HealthManager>().TakeDamage(damage);
             }
         }
-    }
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
         if (other.gameObject.CompareTag("TowerBullet"))
         {
             healthManager.TakeDamage(1);
             other.gameObject.GetComponent<Projectile>().DeactivateNow();
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("BowlingPin"))
+        {
+            if (other.transform.position.y >= transform.position.y)
+            {
+                velocity = Vector2.zero;
+                isPathBlocked = true;
+                other.gameObject.GetComponentInParent<HealthManager>().TakeDamage(damage);
+            }
         }
     }
 

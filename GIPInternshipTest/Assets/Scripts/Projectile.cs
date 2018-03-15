@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
+    [SerializeField]
     private float speed = 10f;
     Rigidbody2D projectileRigidbody;
     private float timeBeforeDeactivate = 3f;
