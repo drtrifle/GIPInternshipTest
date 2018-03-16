@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(HealthManager))]
-public class BowlingBallGreen : BowlingBall {
+public class BowlingBallChangeDirection : BowlingBall {
 
     public override void FixedUpdate()
     {

@@ -61,6 +61,11 @@ public class HealthManager : MonoBehaviour {
     public void Die()
     {
         healthBar.TearDownHealthBar();
+
+        if (gameObject.CompareTag("BowlingBall")){
+            GameManager.Instance.IncrementPlayerScore(initialHealth);
+        }
+
         Destroy(gameObject);
     }
 

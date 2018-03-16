@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b30b8ef5c726a0479afc8fefe91f44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 10
+  initialHealth: 5
   remainingHealth: 0
   isInvincible: 0
 --- !u!114 &114658403369510418

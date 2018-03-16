@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private int playerRemainingHealth = 50;
 
+    [SerializeField]
+    private int playerScore = 0;
+
     public static bool isGameOver = false;
 
     #region Singleton
@@ -36,6 +39,12 @@ public class GameManager : MonoBehaviour {
         {
             GameOver();
         }
+    }
+
+    public void IncrementPlayerScore(int points)
+    {
+        playerScore += points;
+        UIManager.Instance.UpdatePlayerScore(playerScore);
     }
 
     #region Game State Methods
