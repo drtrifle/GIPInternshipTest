@@ -64,6 +64,7 @@ public class HealthManager : MonoBehaviour {
 
         if (gameObject.CompareTag("BowlingBall")){
             GameManager.Instance.IncrementPlayerScore(initialHealth);
+            SoundManager.Instance.PlayBallKilledSound();
         }
 
         Destroy(gameObject);

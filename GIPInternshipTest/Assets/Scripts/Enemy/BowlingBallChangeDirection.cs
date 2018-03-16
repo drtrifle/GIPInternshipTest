@@ -16,6 +16,4 @@ public class BowlingBallChangeDirection : BowlingBall {
 
         base.FixedUpdate();
     }
-
-   
 }

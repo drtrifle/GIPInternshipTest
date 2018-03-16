@@ -42,6 +42,7 @@ public class BowlingPin : MonoBehaviour {
 
     void ShootEnemy(Quaternion rotation)
     {
+        SoundManager.Instance.PlayBulletSound();
         objectPooler.SpawnFromPool("TowerBullet", transform.position, rotation);
     }
 
