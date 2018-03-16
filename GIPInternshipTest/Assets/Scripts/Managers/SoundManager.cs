@@ -7,6 +7,8 @@ public class SoundManager : MonoBehaviour {
     //Sound
     [SerializeField]
     private AudioSource audioSource;
+    [SerializeField]
+    private AudioSource bulletSource;
 
     [SerializeField]
     private AudioClip ballGoalSound;
@@ -31,8 +33,6 @@ public class SoundManager : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-
-        audioSource = GetComponent<AudioSource>();
     }
     #endregion  
 
@@ -56,7 +56,7 @@ public class SoundManager : MonoBehaviour {
 
     //Plays a sound when a bullet is fired
     public void PlayBulletSound() {
-        this.audioSource.clip = bulletSound;
-        audioSource.Play();
+        this.bulletSource.clip = bulletSound;
+        bulletSource.Play();
     }
 }
