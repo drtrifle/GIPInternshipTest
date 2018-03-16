@@ -6,11 +6,6 @@ public class BowlingPinSpawner : MonoBehaviour {
 
     public GameObject bowlingPinPrefab;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-
     // Update is called once per frame
     void Update()
     {
