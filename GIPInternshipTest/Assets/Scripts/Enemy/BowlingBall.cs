@@ -6,29 +6,30 @@ using UnityEngine;
 [RequireComponent(typeof(HealthManager))]
 public class BowlingBall : MonoBehaviour {
 
-    private GameObject[] goalObjects;
+    protected GameObject[] goalObjects;
     [SerializeField]
-    private bool isPathBlocked = false;
+    protected bool isPathBlocked = false;
     public float scaleMutiplier = 1;
 
     [SerializeField]
-    private Transform goalTransform;
+    protected Transform goalTransform;
 
     public Vector2 velocity;
     [SerializeField]
-    private float speed = 1;
+    protected float speed = 1;
     [SerializeField]
     private int damage = 1;
 
     //Component Variables
-    private Rigidbody2D rb2D;
+    protected Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer;
     private HealthManager healthManager;
 
-    void Start()
+    public virtual void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         healthManager = GetComponent<HealthManager>();
+        goalObjects = GameObject.FindGameObjectsWithTag("Goal");
         GetDestinationTarget();
         UpdateLocalScale();
         UpdateSpriteRenderer();
@@ -53,7 +54,6 @@ public class BowlingBall : MonoBehaviour {
 
     protected void GetDestinationTarget()
     {
-        goalObjects = GameObject.FindGameObjectsWithTag("Goal");
         int rdmIndex = Random.Range(0,goalObjects.Length);
         goalTransform = goalObjects[rdmIndex].transform;
     }
@@ -64,7 +64,7 @@ public class BowlingBall : MonoBehaviour {
         transform.localScale = new Vector3((1 - yPosition) * scaleMutiplier, (1 - yPosition) * scaleMutiplier, 1);
     }
 
-    void UpdatePosition()
+    protected virtual void UpdatePosition()
     {
         if (isPathBlocked)
         {

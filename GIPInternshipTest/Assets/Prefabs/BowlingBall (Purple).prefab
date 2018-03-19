@@ -22,15 +22,15 @@ GameObject:
   - component: {fileID: 212779712546542250}
   - component: {fileID: 50603814592318732}
   - component: {fileID: 58813066534935482}
-  - component: {fileID: 114319650085191780}
   - component: {fileID: 114995914343905014}
+  - component: {fileID: 114256231040001352}
   m_Layer: 8
   m_Name: BowlingBall (Purple)
   m_TagString: BowlingBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4658355667753214
 Transform:
   m_ObjectHideFlags: 1
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1125097402775890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6, y: -5.92, z: 0}
+  m_LocalPosition: {x: -1.6, y: -6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &114319650085191780
+--- !u!114 &114256231040001352
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -87,15 +87,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1125097402775890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 499dc0cc298880e4c9a4da4748d8b67e, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f8b28f26a2a57445ac28ae795c454ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isPathBlocked: 0
-  scaleMutiplier: 0.9
+  scaleMutiplier: 1
   goalTransform: {fileID: 0}
   velocity: {x: 0, y: 0}
-  speed: 5
-  damage: 1
+  speed: 2
+  damage: 2
 --- !u!114 &114995914343905014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b30b8ef5c726a0479afc8fefe91f44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 2
+  initialHealth: 4
   remainingHealth: 0
   isInvincible: 0
 --- !u!212 &212779712546542250
