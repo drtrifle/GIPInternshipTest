@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private int playerScore = 0;
+    private int prevScoreThreshold = 10;
 
     public static bool isGameOver = false;
 
@@ -41,10 +42,20 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    private void HealPlayer(int healAmt) {
+        playerRemainingHealth += 1;
+        UIManager.Instance.UpdatePlayerHealth(playerRemainingHealth);
+    }
+
     public void IncrementPlayerScore(int points)
     {
         playerScore += points;
         UIManager.Instance.UpdatePlayerScore(playerScore);
+
+        if(playerScore >= prevScoreThreshold) {
+            prevScoreThreshold += 5;
+            HealPlayer(1);
+        }
     }
 
     #region Game State Methods
