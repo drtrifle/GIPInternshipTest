@@ -16,6 +16,7 @@ public class Goal : MonoBehaviour {
         if (other.CompareTag("BowlingBall"))
         {
             screenShake.StartShakingScreen();
+            SoundManager.Instance.PlayBallGoalSound();
             other.GetComponent<BowlingBall>().ReachedDestination();
         }
     }

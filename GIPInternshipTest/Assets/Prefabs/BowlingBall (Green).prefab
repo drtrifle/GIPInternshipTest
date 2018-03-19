@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 212718883068019720}
   - component: {fileID: 50987762873792466}
   - component: {fileID: 58353232382049210}
-  - component: {fileID: 114579459815443774}
   - component: {fileID: 114594396621422818}
+  - component: {fileID: 114579459815443774}
   m_Layer: 8
   m_Name: BowlingBall (Green)
   m_TagString: BowlingBall
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b30b8ef5c726a0479afc8fefe91f44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialHealth: 5
+  initialHealth: 7
   remainingHealth: 0
   isInvincible: 0
 --- !u!114 &114594396621422818
@@ -108,7 +108,7 @@ MonoBehaviour:
   scaleMutiplier: 1.1
   goalTransform: {fileID: 0}
   velocity: {x: 0, y: 0}
-  speed: 1
+  speed: 1.8
   damage: 5
 --- !u!212 &212718883068019720
 SpriteRenderer:

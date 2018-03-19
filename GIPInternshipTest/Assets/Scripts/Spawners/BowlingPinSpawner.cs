@@ -6,11 +6,6 @@ public class BowlingPinSpawner : MonoBehaviour {
 
     public GameObject bowlingPinPrefab;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-
     // Update is called once per frame
     void Update()
     {
@@ -30,7 +25,8 @@ public class BowlingPinSpawner : MonoBehaviour {
             {
                 cursorPosition.z = 0;
                 Instantiate(bowlingPinPrefab, cursorPosition, Quaternion.identity);
-                GameManager.Instance.DamagePlayer(1);
+                GameManager.Instance.DamagePlayer(5);
+                SoundManager.Instance.PlayPlacePinSound();
             }
         }
     }

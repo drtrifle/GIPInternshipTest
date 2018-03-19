@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212136300145418386}
   - component: {fileID: 50328301310964242}
   - component: {fileID: 58816262521137012}
-  - component: {fileID: 114920373993897218}
+  - component: {fileID: 114271237729214070}
   - component: {fileID: 114493471604046746}
   m_Layer: 8
   m_Name: BowlingBall (Red)
@@ -79,6 +79,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.4
+--- !u!114 &114271237729214070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1547828570658384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e5b9bda39e6884e939bd60a2f43277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPathBlocked: 0
+  scaleMutiplier: 0.9
+  goalTransform: {fileID: 0}
+  velocity: {x: 0, y: 0}
+  speed: 5
+  damage: 1
 --- !u!114 &114493471604046746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,23 +110,6 @@ MonoBehaviour:
   initialHealth: 2
   remainingHealth: 0
   isInvincible: 0
---- !u!114 &114920373993897218
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1547828570658384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 499dc0cc298880e4c9a4da4748d8b67e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPathBlocked: 0
-  scaleMutiplier: 0.9
-  goalTransform: {fileID: 0}
-  velocity: {x: 0, y: 0}
-  speed: 5
-  damage: 1
 --- !u!212 &212136300145418386
 SpriteRenderer:
   m_ObjectHideFlags: 1

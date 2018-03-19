@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour {
 
     public Vector3 healthUIOffset;
     public Text playerHealthText;
+    public Text playerScoreText;
     public GameObject gameOverUI;
 
     #region Singleton
@@ -37,6 +38,11 @@ public class UIManager : MonoBehaviour {
         }
 
         playerHealthText.text = "Health: " + playerRemainingHealth;
+    }
+
+    public void UpdatePlayerScore(int playerCurrentScore)
+    {
+        playerScoreText.text = "Score: " + playerCurrentScore;
     }
 
     public HealthBar CreateHealthBarUI(Transform targetTransform)
