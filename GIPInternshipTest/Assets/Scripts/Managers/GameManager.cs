@@ -8,8 +8,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private int playerRemainingHealth = 50;
 
-    [SerializeField]
-    private int playerScore = 0;
+    public static int playerScore = 0;
     private int prevScoreThreshold = 10;
 
     public static bool isGameOver = false;

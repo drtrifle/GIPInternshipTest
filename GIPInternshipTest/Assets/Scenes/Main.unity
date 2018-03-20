@@ -451,8 +451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd64cbd4ca54af4bbe5a8c9910376bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRemainingHealth: 100
-  playerScore: 0
+  playerRemainingHealth: 50
 --- !u!1 &587894380
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,7 +774,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Health: 100'
+  m_Text: 'Health: 50'
 --- !u!222 &1298915014
 CanvasRenderer:
   m_ObjectHideFlags: 0

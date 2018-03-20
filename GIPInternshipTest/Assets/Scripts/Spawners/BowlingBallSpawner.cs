@@ -8,6 +8,7 @@ public class BowlingBallSpawner : MonoBehaviour {
 
     public GameObject[] bowlingBallPrefabs;
 
+    #region Unity Methods
     // Use this for initialization
     void Start() {
         StartCoroutine(SpawnEnemy());
@@ -17,6 +18,7 @@ public class BowlingBallSpawner : MonoBehaviour {
     void Update() {
         //SpawnBowlingBallOnInput();
     }
+    #endregion
 
     //Raycast from cursor to background and only allow spawn if it hits the polygon collider 
     //For Dev Debug only
@@ -35,12 +37,13 @@ public class BowlingBallSpawner : MonoBehaviour {
     }
 
     #region Coroutines
+    //Keeps spawning enemy until game over
     private IEnumerator SpawnEnemy() {
         while (!GameManager.isGameOver) {
             Vector3 rdmVector = new Vector3(Random.Range(-11f, 11f), -10f, 0f);
             int rdmIndex = Random.Range(0, bowlingBallPrefabs.Length);
             Instantiate(bowlingBallPrefabs[rdmIndex], rdmVector, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(5f, 8f));
+            yield return new WaitForSeconds(Random.Range(5f, 8f) - GameManager.playerScore/20f);
         }
     }
     #endregion
