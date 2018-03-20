@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BowlingPin : MonoBehaviour {
+public class BowlingPin : MonoBehaviour, IDestructibleUnit {
 
     private SpriteRenderer spriteRenderer;
     private ObjectPooler objectPooler;
@@ -39,12 +39,6 @@ public class BowlingPin : MonoBehaviour {
         transform.localScale = new Vector3(1- yPosition, 1 - yPosition, 1);
     }
     #endregion
-
-    void ShootEnemy(Quaternion rotation)
-    {
-        SoundManager.Instance.PlayBulletSound();
-        objectPooler.SpawnFromPool("TowerBullet", transform.position, rotation);
-    }
 
     #region Collision Methods
     private void OnTriggerEnter2D(Collider2D other)
@@ -116,4 +110,16 @@ public class BowlingPin : MonoBehaviour {
         pinDictionary.Remove(target);
     }
     #endregion
+
+    #region IDestructible Methods
+    public void Die(int score) {
+        Destroy(gameObject);
+    }
+    #endregion
+
+    void ShootEnemy(Quaternion rotation) {
+        SoundManager.Instance.PlayBulletSound();
+        objectPooler.SpawnFromPool("TowerBullet", transform.position, rotation);
+    }
+
 }

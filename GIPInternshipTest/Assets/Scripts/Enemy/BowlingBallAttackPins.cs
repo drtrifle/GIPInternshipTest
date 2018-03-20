@@ -35,7 +35,6 @@ public class BowlingBallAttackPins : BowlingBall {
 
         if (doesPinTransformExist) {
             velocity = pinTransform.position - transform.position;
-            Debug.Log("he");
         } else {
             velocity = goalTransform.position - transform.position;
         }

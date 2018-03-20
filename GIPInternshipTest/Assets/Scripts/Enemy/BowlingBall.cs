@@ -4,12 +4,12 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(HealthManager))]
-public class BowlingBall : MonoBehaviour {
+public class BowlingBall : MonoBehaviour, IDestructibleUnit {
 
     protected GameObject[] goalObjects;
-    [SerializeField]
     protected bool isPathBlocked = false;
-    public float scaleMutiplier = 1;
+    [SerializeField]
+    private float scaleMutiplier = 1;
 
     [SerializeField]
     protected Transform goalTransform;
@@ -58,16 +58,22 @@ public class BowlingBall : MonoBehaviour {
         goalTransform = goalObjects[rdmIndex].transform;
     }
 
+    #region UI Methods
+    //Order sprites that are closer to the bottom to be rendered last 
+    void UpdateSpriteRenderer() {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sortingOrder = -(int)(transform.position.y * 100f);
+    }
+
     void UpdateLocalScale()
     {
         float yPosition = transform.position.y / 10;
         transform.localScale = new Vector3((1 - yPosition) * scaleMutiplier, (1 - yPosition) * scaleMutiplier, 1);
     }
+    #endregion
 
-    protected virtual void UpdatePosition()
-    {
-        if (isPathBlocked)
-        {
+    protected virtual void UpdatePosition() {
+        if (isPathBlocked) {
             velocity = Vector2.zero;
             return;
         }
@@ -78,12 +84,7 @@ public class BowlingBall : MonoBehaviour {
         rb2D.MovePosition(rb2D.position + velocity * Time.fixedDeltaTime);
     }
 
-    //Order sprites that are closer to the bottom to be rendered last 
-    void UpdateSpriteRenderer()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sortingOrder = -(int)(transform.position.y * 100f);
-    }
+    #region Collision Methods
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -123,4 +124,16 @@ public class BowlingBall : MonoBehaviour {
     {
         isPathBlocked = false;
     }
+
+    #endregion
+
+    #region IDestructible Methods
+
+    public virtual void Die(int score) {
+        GameManager.Instance.IncrementPlayerScore(score);
+        SoundManager.Instance.PlayBallKilledSound();
+
+        Destroy(gameObject);
+    }
+    #endregion
 }
