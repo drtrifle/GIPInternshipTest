@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Manages game state and player information
 public class GameManager : MonoBehaviour {
 
-    [SerializeField]
-    private int playerRemainingHealth = 50;
+    public static int playerRemainingHealth = 50;
 
     public static int playerScore = 0;
     private int prevScoreThreshold = 10;
@@ -29,33 +29,35 @@ public class GameManager : MonoBehaviour {
     }
     #endregion
 
-    //Called by BowlingBall
-    public void DamagePlayer(int damage)
-    {
+    #region Player Methods
+
+    //Damages player & updates UI
+    public void DamagePlayer(int damage) {
         playerRemainingHealth -= damage;
         UIManager.Instance.UpdatePlayerHealth(playerRemainingHealth);
 
-        if (playerRemainingHealth <= 0)
-        {
+        if (playerRemainingHealth <= 0) {
             GameOver();
         }
     }
 
+    //Heals player and updates UI
     private void HealPlayer(int healAmt) {
         playerRemainingHealth += 1;
         UIManager.Instance.UpdatePlayerHealth(playerRemainingHealth);
     }
 
-    public void IncrementPlayerScore(int points)
-    {
+    //Increments player score & updates UI
+    public void IncrementPlayerScore(int points) {
         playerScore += points;
         UIManager.Instance.UpdatePlayerScore(playerScore);
 
-        if(playerScore >= prevScoreThreshold) {
+        if (playerScore >= prevScoreThreshold) {
             prevScoreThreshold += 5;
             HealPlayer(1);
         }
     }
+    #endregion
 
     #region Game State Methods
     //Called by Restart Button

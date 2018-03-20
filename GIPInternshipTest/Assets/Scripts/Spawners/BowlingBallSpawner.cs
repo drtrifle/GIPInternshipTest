@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Randomly spawns BowlingBall enemies at the bottom of screen
 public class BowlingBallSpawner : MonoBehaviour {
     [SerializeField]
     private float spawnInterval = 10;
@@ -20,6 +21,7 @@ public class BowlingBallSpawner : MonoBehaviour {
     }
     #endregion
 
+    #region Debug Methods
     //Raycast from cursor to background and only allow spawn if it hits the polygon collider 
     //For Dev Debug only
     void SpawnBowlingBallOnInput() {
@@ -35,6 +37,7 @@ public class BowlingBallSpawner : MonoBehaviour {
             }
         }
     }
+    #endregion
 
     #region Coroutines
     //Keeps spawning enemy until game over
@@ -43,8 +46,8 @@ public class BowlingBallSpawner : MonoBehaviour {
             Vector3 rdmVector = new Vector3(Random.Range(-11f, 11f), -10f, 0f);
             int rdmIndex = Random.Range(0, bowlingBallPrefabs.Length);
             Instantiate(bowlingBallPrefabs[rdmIndex], rdmVector, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(5f, 8f) - GameManager.playerScore/20f);
+            yield return new WaitForSeconds(Random.Range(5f, 8f) - GameManager.playerScore/50f);
         }
     }
-    #endregion
+    #endregion  
 }

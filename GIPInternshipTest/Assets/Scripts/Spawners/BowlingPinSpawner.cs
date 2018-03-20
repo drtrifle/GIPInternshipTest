@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Spawns BowlingPin Objects on Left Click
 public class BowlingPinSpawner : MonoBehaviour {
 
     public GameObject bowlingPinPrefab;
@@ -12,10 +13,10 @@ public class BowlingPinSpawner : MonoBehaviour {
         SpawnBowlingPinOnInput();
     }
 
-    //Raycast from cursor to background and only allow spawn if it hits the polygon collider 
+    //Raycast from cursor to background and only allow spawn if it hits the background polygon collider & if player has more than 5 health
     void SpawnBowlingPinOnInput()
     {
-        if (Input.GetButtonDown("Fire1") && !GameManager.isGameOver)
+        if (GameManager.playerRemainingHealth > 5 && Input.GetButtonDown("Fire1") && !GameManager.isGameOver)
         {
             Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
