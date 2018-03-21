@@ -92,8 +92,6 @@ public class BowlingBall : MonoBehaviour, IDestructibleUnit {
         {
             if (other.transform.position.y >= transform.position.y)
             {
-                Debug.Log("OnTriggerEnter2D");
-
                 velocity = Vector2.zero;
                 isPathBlocked = true;
                 other.gameObject.GetComponentInParent<HealthManager>().TakeDamage(damage);
