@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 58353232382049210}
   - component: {fileID: 114594396621422818}
   - component: {fileID: 114579459815443774}
+  - component: {fileID: 95149006670877112}
   m_Layer: 8
   m_Name: BowlingBall (Green)
   m_TagString: BowlingBall
@@ -79,6 +80,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.4
+--- !u!95 &95149006670877112
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1805298431118890}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 36c2661a530b7734e84165b79dea0dc1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114579459815443774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,12 +122,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62e5b9bda39e6884e939bd60a2f43277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPathBlocked: 0
   scaleMutiplier: 1.1
   goalTransform: {fileID: 0}
   velocity: {x: 0, y: 0}
   speed: 1.8
   damage: 5
+  deathAnimation: {fileID: 0}
 --- !u!212 &212718883068019720
 SpriteRenderer:
   m_ObjectHideFlags: 1

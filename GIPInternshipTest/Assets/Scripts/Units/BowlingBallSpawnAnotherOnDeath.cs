@@ -21,7 +21,7 @@ public class BowlingBallSpawnAnotherOnDeath : BowlingBall {
             Instantiate(spawnBallPrefab, transform.position, Quaternion.identity);
         }
 
-        Destroy(gameObject);
+        StartCoroutine(PlayDeathAnimation());
     }
     #endregion
 }

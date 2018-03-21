@@ -11,6 +11,9 @@ public class BowlingPin : MonoBehaviour, IDestructibleUnit {
 
     private bool isShooting = false;
 
+    private Animator deathAnimator;
+    private bool isDying;
+
     #region Unity Methods
     // Use this for initialization
     void Start() {
@@ -18,6 +21,7 @@ public class BowlingPin : MonoBehaviour, IDestructibleUnit {
         UpdateLocalScale();
         objectPooler = ObjectPooler.Instance;
         pinDictionary = new Dictionary<GameObject, bool>();
+        deathAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -41,11 +45,11 @@ public class BowlingPin : MonoBehaviour, IDestructibleUnit {
     #endregion
 
     #region Collision Methods
-    private void OnTriggerEnter2D(Collider2D other) {
-        
-    }
-
     private void OnTriggerStay2D(Collider2D other) {
+        if (isDying) {
+            return;
+        }
+
         if (other.CompareTag("BowlingBall")) {
             if (!pinDictionary.ContainsKey(other.gameObject)) {
                 pinDictionary.Add(other.gameObject, true);
@@ -58,6 +62,9 @@ public class BowlingPin : MonoBehaviour, IDestructibleUnit {
     }
 
     private void OnTriggerExit2D(Collider2D other) {
+        if (isDying) {
+            return;
+        }
 
         if (other.CompareTag("BowlingBall")) {
             //Exit Prematurelly if object not in dictionary
@@ -82,7 +89,7 @@ public class BowlingPin : MonoBehaviour, IDestructibleUnit {
 
         isShooting = true;
 
-        while (pinDictionary[target]) {
+        while (pinDictionary[target] && !isDying) {
             yield return new WaitForSeconds(shootingInterval);
 
             //Break early if target was destroyed
@@ -112,11 +119,22 @@ public class BowlingPin : MonoBehaviour, IDestructibleUnit {
         pinDictionary.Remove(target);
         isShooting = false;
     }
+
+    //Plays Death Animation before destroy
+    protected IEnumerator PlayDeathAnimation() {
+
+        deathAnimator.enabled = true;
+
+        yield return new WaitForSeconds(.3f);
+        Destroy(gameObject);
+    }
     #endregion
 
     #region IDestructible Methods
     public void Die(int score) {
-        Destroy(gameObject);
+        isDying = true;
+
+        StartCoroutine(PlayDeathAnimation());
     }
     #endregion
 

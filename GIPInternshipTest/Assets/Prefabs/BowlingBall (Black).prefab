@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 58669935025721030}
   - component: {fileID: 114099330837792326}
   - component: {fileID: 114100930513937278}
+  - component: {fileID: 95742747196593114}
   m_Layer: 8
   m_Name: BowlingBall (Black)
   m_TagString: BowlingBall
@@ -79,6 +80,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   serializedVersion: 2
   m_Radius: 0.4
+--- !u!95 &95742747196593114
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1912404812953958}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 36c2661a530b7734e84165b79dea0dc1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114099330837792326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,6 +127,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   speed: 1.75
   damage: 1
+  deathAnimation: {fileID: 0}
   spawnBallPrefab: {fileID: 114271237729214070, guid: ba9b59be6a0b3de4888193b862371c63,
     type: 2}
 --- !u!212 &212549292389693506

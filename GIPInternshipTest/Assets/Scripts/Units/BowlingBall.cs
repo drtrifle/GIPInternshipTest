@@ -20,32 +20,34 @@ public class BowlingBall : MonoBehaviour, IDestructibleUnit {
     private int damage = 1;
 
     protected bool hasReachedDestination = false;
+    protected bool isDying = false;
+
+    public Animator deathAnimator;
 
     //Component Variables
     protected Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer;
     private HealthManager healthManager;
 
-    public virtual void Start()
-    {
+    public virtual void Start() {
         rb2D = GetComponent<Rigidbody2D>();
         healthManager = GetComponent<HealthManager>();
+        deathAnimator = GetComponent<Animator>();
         GetDestinationTarget();
         UpdateLocalScale();
         UpdateSpriteRenderer();
     }
 
-    public virtual void FixedUpdate()
-    {
-        UpdatePosition();
-        UpdateLocalScale();
-        UpdateSpriteRenderer();
-        //isPathBlocked = false;
+    public virtual void FixedUpdate() {
+        if (!isDying) {
+            UpdatePosition();
+            UpdateLocalScale();
+            UpdateSpriteRenderer();
+        }
     }
 
     //Called when Ball has reached goal
-    public void ReachedDestination()
-    {
+    public void ReachedDestination() {
         //Damage player
         GameManager.Instance.DamagePlayer(damage);
         hasReachedDestination = true;
@@ -53,8 +55,7 @@ public class BowlingBall : MonoBehaviour, IDestructibleUnit {
         healthManager.Die();
     }
 
-    protected void GetDestinationTarget()
-    {
+    protected void GetDestinationTarget() {
         goalTransform = GameManager.Instance.GetRandomGoalDestination();
     }
 
@@ -65,8 +66,7 @@ public class BowlingBall : MonoBehaviour, IDestructibleUnit {
         spriteRenderer.sortingOrder = -(int)(transform.position.y * 100f);
     }
 
-    void UpdateLocalScale()
-    {
+    void UpdateLocalScale() {
         float yPosition = transform.position.y / 10;
         transform.localScale = new Vector3((1 - yPosition) * scaleMutiplier, (1 - yPosition) * scaleMutiplier, 1);
     }
@@ -86,31 +86,32 @@ public class BowlingBall : MonoBehaviour, IDestructibleUnit {
 
     #region Collision Methods
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("BowlingPin"))
-        {
-            if (other.transform.position.y >= transform.position.y)
-            {
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (isDying) {
+            return;
+        }
+
+        if (other.gameObject.CompareTag("BowlingPin")) {
+            if (other.transform.position.y >= transform.position.y) {
                 velocity = Vector2.zero;
                 isPathBlocked = true;
                 other.gameObject.GetComponentInParent<HealthManager>().TakeDamage(damage);
             }
         }
 
-        if (other.gameObject.CompareTag("TowerBullet"))
-        {
+        if (other.gameObject.CompareTag("TowerBullet")) {
             healthManager.TakeDamage(1);
             other.gameObject.GetComponent<Projectile>().DeactivateNow();
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("BowlingPin"))
-        {
-            if (other.transform.position.y >= transform.position.y)
-            {
+    private void OnTriggerStay2D(Collider2D other) {
+        if (isDying) {
+            return;
+        }
+
+        if (other.gameObject.CompareTag("BowlingPin")) {
+            if (other.transform.position.y >= transform.position.y) {
                 velocity = Vector2.zero;
                 isPathBlocked = true;
                 other.gameObject.GetComponentInParent<HealthManager>().TakeDamage(damage);
@@ -118,8 +119,11 @@ public class BowlingBall : MonoBehaviour, IDestructibleUnit {
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
-    {
+    void OnTriggerExit2D(Collider2D other) {
+        if (isDying) {
+            return;
+        }
+
         isPathBlocked = false;
     }
 
@@ -128,13 +132,27 @@ public class BowlingBall : MonoBehaviour, IDestructibleUnit {
     #region IDestructible Methods
 
     public virtual void Die(int score) {
-        if(!hasReachedDestination) {
+        if (!hasReachedDestination) {
             GameManager.Instance.IncrementPlayerScore(score);
         }
 
+        isDying = true;
+
         SoundManager.Instance.PlayBallKilledSound();
 
+        StartCoroutine(PlayDeathAnimation());
+    }
+    #endregion
+
+    #region Coroutines
+
+    protected IEnumerator PlayDeathAnimation() {
+
+        deathAnimator.enabled = true;
+
+        yield return new WaitForSeconds(.3f);
         Destroy(gameObject);
     }
+
     #endregion
 }
