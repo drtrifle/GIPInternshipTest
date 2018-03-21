@@ -7,13 +7,13 @@ public class HealthBar : MonoBehaviour
     #region PRIVATE_VARIABLES
     private Vector2 positionCorrection = new Vector2(0, 50);
     private Image healthBarImage;
+    private Text healthBarText;
     #endregion
 
     #region PUBLIC_REFERENCES
     public RectTransform targetCanvas;
     public RectTransform healthBarMask;
     public Transform objectToFollow; 
-
     #endregion
 
     #region PUBLIC_METHODS
@@ -22,6 +22,7 @@ public class HealthBar : MonoBehaviour
         this.targetCanvas = healthBarPanel;
         healthBarMask = GetComponent<RectTransform>();
         healthBarImage = healthBarMask.GetChild(0).GetComponent<Image>();
+        healthBarText = healthBarMask.GetChild(1).GetComponent<Text>();
         objectToFollow = targetTransform;
         RepositionHealthBar();
         healthBarMask.gameObject.SetActive(true);
@@ -35,6 +36,10 @@ public class HealthBar : MonoBehaviour
     public void TearDownHealthBar()
     {
         Destroy(gameObject);
+    }
+
+    public void UpdateHealthText(int remainingHealth, int initialHealth) {
+        healthBarText.text = remainingHealth + " / " + initialHealth;
     }
     #endregion
 

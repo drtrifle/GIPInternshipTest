@@ -64,10 +64,12 @@ public class HealthManager : MonoBehaviour {
     #region Health UI Methods
     void SetUpHealthBar() {
         healthBar = uIManager.CreateHealthBarUI(transform);
+        healthBar.UpdateHealthText(remainingHealth, initialHealth);
     }
 
     void UpdateHealthUI() {
         healthBar.OnHealthChanged(remainingHealth / (float)initialHealth);
+        healthBar.UpdateHealthText(remainingHealth, initialHealth);
     }
     #endregion
 

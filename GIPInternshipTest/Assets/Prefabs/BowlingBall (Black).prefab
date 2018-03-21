@@ -125,9 +125,9 @@ MonoBehaviour:
   scaleMutiplier: 1
   goalTransform: {fileID: 0}
   velocity: {x: 0, y: 0}
-  speed: 1.75
+  speed: 1.5
   damage: 1
-  deathAnimation: {fileID: 0}
+  deathAnimator: {fileID: 0}
   spawnBallPrefab: {fileID: 114271237729214070, guid: ba9b59be6a0b3de4888193b862371c63,
     type: 2}
 --- !u!212 &212549292389693506
