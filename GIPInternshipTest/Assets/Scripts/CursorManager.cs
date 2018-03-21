@@ -38,7 +38,7 @@ public class CursorManager : MonoBehaviour {
     void CheckIfCanSpawnPin() {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-        if (hit.collider != null && GameManager.playerRemainingHealth > 5) {
+        if (hit.collider != null && GameManager.Instance.playerRemainingHealth > 5) {
             spriteRenderer.sprite = greenCursor;
         } else {
             spriteRenderer.sprite = redCursor;

@@ -40,11 +40,11 @@ public class BowlingBallSpawner : MonoBehaviour {
     #region Coroutines
     //Keeps spawning enemy until game over
     private IEnumerator SpawnEnemy() {
-        while (!GameManager.isGameOver) {
+        while (!GameManager.Instance.isGameOver) {
             Vector3 rdmVector = new Vector3(Random.Range(-11f, 11f), -10f, 0f);
             int rdmIndex = Random.Range(0, bowlingBallPrefabs.Length);
             Instantiate(bowlingBallPrefabs[rdmIndex], rdmVector, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(5f, 8f) - GameManager.playerScore/50f);
+            yield return new WaitForSeconds(Random.Range(5f, 8f) - GameManager.Instance.playerScore/50f);
         }
     }
     #endregion  

@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 //Manages game state and player information
 public class GameManager : MonoBehaviour {
 
-    public static int playerRemainingHealth = 50;
+    public int playerRemainingHealth = 50;
 
-    public static int playerScore = 0;
+    public int playerScore = 0;
     private int prevScoreThreshold = 10;
 
-    public static bool isGameOver = false;
+    public bool isGameOver = false;
 
-    public static GameObject[] goalObjects;
+    public GameObject[] goalObjects;
 
     #region Singleton
     public static GameManager Instance;
@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour {
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        isGameOver = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
