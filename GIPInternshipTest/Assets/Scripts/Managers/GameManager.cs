@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour {
 
     public static bool isGameOver = false;
 
+    public static GameObject[] goalObjects;
+
     #region Singleton
     public static GameManager Instance;
 
@@ -26,6 +28,12 @@ public class GameManager : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+    }
+    #endregion
+
+    #region Unity Methods
+    private void Start() {
+        goalObjects = GameObject.FindGameObjectsWithTag("Goal");
     }
     #endregion
 
@@ -75,4 +83,10 @@ public class GameManager : MonoBehaviour {
         UIManager.Instance.DisplayGameOverUI();
     }
     #endregion
+
+    //Returns a random goal transform from array of goal transforms
+    public Transform GetRandomGoalDestination() {
+        int rdmIndex = Random.Range(0, goalObjects.Length);
+        return goalObjects[rdmIndex].transform;
+    }
 }

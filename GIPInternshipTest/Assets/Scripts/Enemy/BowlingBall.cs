@@ -6,7 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(HealthManager))]
 public class BowlingBall : MonoBehaviour, IDestructibleUnit {
 
-    protected GameObject[] goalObjects;
     protected bool isPathBlocked = false;
     [SerializeField]
     private float scaleMutiplier = 1;
@@ -29,7 +28,6 @@ public class BowlingBall : MonoBehaviour, IDestructibleUnit {
     {
         rb2D = GetComponent<Rigidbody2D>();
         healthManager = GetComponent<HealthManager>();
-        goalObjects = GameObject.FindGameObjectsWithTag("Goal");
         GetDestinationTarget();
         UpdateLocalScale();
         UpdateSpriteRenderer();
@@ -54,8 +52,7 @@ public class BowlingBall : MonoBehaviour, IDestructibleUnit {
 
     protected void GetDestinationTarget()
     {
-        int rdmIndex = Random.Range(0,goalObjects.Length);
-        goalTransform = goalObjects[rdmIndex].transform;
+        goalTransform = GameManager.Instance.GetRandomGoalDestination();
     }
 
     #region UI Methods
