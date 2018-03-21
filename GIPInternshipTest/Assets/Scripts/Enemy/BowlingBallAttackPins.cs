@@ -12,9 +12,9 @@ public class BowlingBallAttackPins : BowlingBall {
     bool GetNewPinTarget() {
         pinObjects = GameObject.FindGameObjectsWithTag("BowlingPin");
 
-        for(int currIndex = 0; currIndex < pinObjects.Length; currIndex++) {
-            if (pinObjects[currIndex].transform.position.y > transform.position.y) {
-                pinTransform = pinObjects[currIndex].transform;
+        for (int currIndex = 0; currIndex < pinObjects.Length; currIndex++) {
+            if (pinObjects[currIndex].transform.parent.position.y > transform.position.y) {
+                pinTransform = pinObjects[currIndex].transform.parent;
                 return true;
             }
         }
@@ -32,6 +32,8 @@ public class BowlingBallAttackPins : BowlingBall {
             velocity = Vector2.zero;
             return;
         }
+
+        Debug.Log(doesPinTransformExist);
 
         if (doesPinTransformExist) {
             velocity = pinTransform.position - transform.position;

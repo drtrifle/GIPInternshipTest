@@ -28,12 +28,14 @@ public class GameManager : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+
+        goalObjects = GameObject.FindGameObjectsWithTag("Goal");
     }
     #endregion
 
     #region Unity Methods
     private void Start() {
-        goalObjects = GameObject.FindGameObjectsWithTag("Goal");
+        //goalObjects = GameObject.FindGameObjectsWithTag("Goal");
     }
     #endregion
 

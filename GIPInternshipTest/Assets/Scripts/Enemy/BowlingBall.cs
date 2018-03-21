@@ -19,6 +19,8 @@ public class BowlingBall : MonoBehaviour, IDestructibleUnit {
     [SerializeField]
     private int damage = 1;
 
+    protected bool hasReachedDestination = false;
+
     //Component Variables
     protected Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer;
@@ -46,6 +48,7 @@ public class BowlingBall : MonoBehaviour, IDestructibleUnit {
     {
         //Damage player
         GameManager.Instance.DamagePlayer(damage);
+        hasReachedDestination = true;
         //Destroy Ball Object& Healthbar UI 
         healthManager.Die();
     }
@@ -127,7 +130,10 @@ public class BowlingBall : MonoBehaviour, IDestructibleUnit {
     #region IDestructible Methods
 
     public virtual void Die(int score) {
-        GameManager.Instance.IncrementPlayerScore(score);
+        if(!hasReachedDestination) {
+            GameManager.Instance.IncrementPlayerScore(score);
+        }
+
         SoundManager.Instance.PlayBallKilledSound();
 
         Destroy(gameObject);

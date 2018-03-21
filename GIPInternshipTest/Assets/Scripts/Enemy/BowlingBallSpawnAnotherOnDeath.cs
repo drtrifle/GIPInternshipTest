@@ -14,10 +14,12 @@ public class BowlingBallSpawnAnotherOnDeath : BowlingBall {
     #region IDestructible Methods
 
     public override void Die(int score) {
-        GameManager.Instance.IncrementPlayerScore(score);
         SoundManager.Instance.PlayBallKilledSound();
 
-        Instantiate(spawnBallPrefab, transform.position, Quaternion.identity);
+        if (!hasReachedDestination) {
+            GameManager.Instance.IncrementPlayerScore(score);
+            Instantiate(spawnBallPrefab, transform.position, Quaternion.identity);
+        }
 
         Destroy(gameObject);
     }

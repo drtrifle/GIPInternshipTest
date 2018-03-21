@@ -9,9 +9,11 @@ public class BowlingPin : MonoBehaviour, IDestructibleUnit {
     private float shootingInterval = 0.5f;
     private Dictionary<GameObject, bool> pinDictionary;
 
+    private bool isShooting = false;
+
     #region Unity Methods
     // Use this for initialization
-    void Start () {
+    void Start() {
         UpdateSpriteRenderer();
         UpdateLocalScale();
         objectPooler = ObjectPooler.Instance;
@@ -19,7 +21,7 @@ public class BowlingPin : MonoBehaviour, IDestructibleUnit {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
         UpdateSpriteRenderer();
         UpdateLocalScale();
     }
@@ -27,41 +29,39 @@ public class BowlingPin : MonoBehaviour, IDestructibleUnit {
 
     #region UI Methods
     //Order sprites that are closer to the bottom to be rendered last 
-    void UpdateSpriteRenderer()
-    {
+    void UpdateSpriteRenderer() {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sortingOrder = -(int)(transform.position.y * 100f);
     }
 
-    void UpdateLocalScale()
-    {
-        float yPosition = transform.position.y/10;
-        transform.localScale = new Vector3(1- yPosition, 1 - yPosition, 1);
+    void UpdateLocalScale() {
+        float yPosition = transform.position.y / 10;
+        transform.localScale = new Vector3(1 - yPosition, 1 - yPosition, 1);
     }
     #endregion
 
     #region Collision Methods
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+    private void OnTriggerEnter2D(Collider2D other) {
+        
+    }
 
-        if (other.CompareTag("BowlingBall"))
-        {
-            if (!pinDictionary.ContainsKey(other.gameObject))
-            {
+    private void OnTriggerStay2D(Collider2D other) {
+        if (other.CompareTag("BowlingBall")) {
+            if (!pinDictionary.ContainsKey(other.gameObject)) {
                 pinDictionary.Add(other.gameObject, true);
+            }
+
+            if (!isShooting) {
                 StartCoroutine(ShootBullets(other.gameObject));
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
+    private void OnTriggerExit2D(Collider2D other) {
 
-        if (other.CompareTag("BowlingBall"))
-        {
+        if (other.CompareTag("BowlingBall")) {
             //Exit Prematurelly if object not in dictionary
-            if (!pinDictionary.ContainsKey(other.gameObject))
-            {
+            if (!pinDictionary.ContainsKey(other.gameObject)) {
                 Debug.LogWarning("Pin GameObject does not exist in Dictionary!");
                 return;
             }
@@ -72,22 +72,24 @@ public class BowlingPin : MonoBehaviour, IDestructibleUnit {
     #endregion
 
     #region Coroutines
-    private IEnumerator ShootBullets(GameObject target)
-    {
-        //Exit Prematurely if object not in dictionary
-        if (!pinDictionary.ContainsKey(target))
-        {
-            Debug.LogWarning("Pin GameObject does not exist in Dictionary!");
+    //Coroutine that continously shoots at enemy 
+    private IEnumerator ShootBullets(GameObject target) {
+        //Exit Prematurely if object not in dictionary or already shooting
+        if (!pinDictionary.ContainsKey(target) || isShooting) {
+            //Debug.LogWarning("Pin GameObject does not exist in Dictionary!");
             yield break;
         }
 
-        while (pinDictionary[target])
-        {
+        isShooting = true;
+
+        while (pinDictionary[target]) {
             yield return new WaitForSeconds(shootingInterval);
 
             //Break early if target was destroyed
-            if (target == null)
+            if (target == null) {
+                isShooting = false;
                 yield break;
+            }
 
             //calculates the angle the bullet prefab must be rotated to face the enemy
             float XDif = target.transform.position.x - transform.position.x;
@@ -96,8 +98,7 @@ public class BowlingPin : MonoBehaviour, IDestructibleUnit {
             float angle = Vector2.Angle(new Vector2(XDif, YDif), new Vector2(0, 1));
 
             //flips the sign of the angle determining on player position relative to the enemy current posisiton
-            if (XDif >= 0)
-            {
+            if (XDif >= 0) {
                 angle = -angle;
             }
 
@@ -106,8 +107,10 @@ public class BowlingPin : MonoBehaviour, IDestructibleUnit {
             ShootEnemy(rotation);
         }
 
+
         //Remove Gameobject from Dictionary
         pinDictionary.Remove(target);
+        isShooting = false;
     }
     #endregion
 
@@ -117,9 +120,11 @@ public class BowlingPin : MonoBehaviour, IDestructibleUnit {
     }
     #endregion
 
+    #region Attack Methods
+    //Takes in a rotation which will be the bullet's rotation on spawn
     void ShootEnemy(Quaternion rotation) {
         SoundManager.Instance.PlayBulletSound();
         objectPooler.SpawnFromPool("TowerBullet", transform.position, rotation);
     }
-
+    #endregion
 }
