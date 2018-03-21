@@ -4,9 +4,6 @@ using UnityEngine;
 
 //Randomly spawns BowlingBall enemies at the bottom of screen
 public class BowlingBallSpawner : MonoBehaviour {
-    [SerializeField]
-    private float spawnInterval = 10;
-
     public GameObject[] bowlingBallPrefabs;
 
     #region Unity Methods

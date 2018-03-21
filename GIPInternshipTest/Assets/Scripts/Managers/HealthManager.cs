@@ -59,8 +59,6 @@ public class HealthManager : MonoBehaviour {
         healthBar.TearDownHealthBar();
 
         destructibleUnit.Die(initialHealth);
-
-        Debug.Log("Error! Unit did not destroy itself");
     }
 
     #region Health UI Methods
